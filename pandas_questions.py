@@ -71,7 +71,7 @@ def compute_referendum_result_by_regions(referendum_and_areas):
 
     reg_sum = referendum_and_areas.groupby(["name_reg"]).sum()
 
-    return reg_sum
+    return reg_sum['name_reg', 'Registered', 'Abstentions', 'Null', 'Choice A', 'Choice B']
 
 
 def plot_referendum_map(referendum_result_by_regions):
