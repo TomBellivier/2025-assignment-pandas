@@ -96,7 +96,7 @@ def plot_referendum_map(referendum_result_by_regions):
                                        left_on='nom',
                                        right_index=True))
 
-    merged['ratio'] = merged["Choice A"] / merged["Registered"]
+    merged['ratio'] = merged["Choice A"] / (merged["Choice A"] + merged["Choice B"])
     merged.plot("ratio", legend=True)
 
     return merged
