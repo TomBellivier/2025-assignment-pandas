@@ -76,8 +76,8 @@ def compute_referendum_result_by_regions(referendum_and_areas):
             "Choice A": "sum",
             "Choice B": "sum"
             })
-    cols = [['name_reg', 'Registered', 'Abstentions',
-             'Null', 'Choice A', 'Choice B']]
+    cols = ['name_reg', 'Registered', 'Abstentions',
+            'Null', 'Choice A', 'Choice B']
 
     return reg_sum[cols]
 
