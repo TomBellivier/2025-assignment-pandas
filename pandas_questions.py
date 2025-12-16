@@ -56,8 +56,8 @@ def merge_referendum_and_areas(referendum, regions_and_departments):
                       left_on="Department code",
                       right_on="code_dep")
     cols = ['Department code', 'Department name', 'Town code', 'Town name',
-        'Registered', 'Abstentions', 'Null', 'Choice A', 'Choice B',
-        'code_dep', 'code_reg', 'name_reg', 'name_dep']
+            'Registered', 'Abstentions', 'Null', 'Choice A', 'Choice B',
+            'code_dep', 'code_reg', 'name_reg', 'name_dep']
 
     return merged[cols]
 
@@ -76,8 +76,10 @@ def compute_referendum_result_by_regions(referendum_and_areas):
             "Choice A": "sum",
             "Choice B": "sum"
             })
+    cols = [['name_reg', 'Registered', 'Abstentions',
+             'Null', 'Choice A', 'Choice B']]
 
-    return reg_sum[['name_reg', 'Registered', 'Abstentions', 'Null', 'Choice A', 'Choice B']]
+    return reg_sum[cols]
 
 
 def plot_referendum_map(referendum_result_by_regions):
@@ -95,8 +97,8 @@ def plot_referendum_map(referendum_result_by_regions):
     merged = gpd.GeoDataFrame(pd.merge(geo, referendum_result_by_regions,
                                        left_on='nom',
                                        right_index=True))
-
-    merged['ratio'] = merged["Choice A"] / (merged["Choice A"] + merged["Choice B"])
+    expressed = merged["Choice A"] + merged["Choice B"]
+    merged['ratio'] = merged["Choice A"] / expressed
     merged.plot("ratio", legend=True)
 
     return merged
