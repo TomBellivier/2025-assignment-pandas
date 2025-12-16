@@ -55,8 +55,9 @@ def merge_referendum_and_areas(referendum, regions_and_departments):
     merged = pd.merge(ref_modif, regions_and_departments,
                       left_on="Department code",
                       right_on="code_dep")
-    cols = ['name_reg', 'Registered', 'Abstentions',
-            'Null', 'Choice A', 'Choice B']
+    cols = ['Department code', 'Department name', 'Town code', 'Town name',
+        'Registered', 'Abstentions', 'Null', 'Choice A', 'Choice B',
+        'code_dep', 'code_reg', 'name_reg', 'name_dep']
 
     return merged[cols]
 
